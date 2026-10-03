@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Bestie! 🎉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Fullscreen Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Floating Balloons Layer -->
+  <div class="balloons-layer" id="balloons-layer"></div>
+
+  <!-- Surprise Envelope Intro Overlay -->
+  <div class="envelope-overlay" id="envelope-overlay">
+    <div class="envelope-box">
+      <div class="envelope-icon">💌</div>
+      <h2>A Special Delivery For You!</h2>
+      <p>Someone made this whole website just to celebrate your birthday.</p>
+      <button class="btn-primary" id="open-surprise-btn" style="width: 100%; justify-content: center;">
+        ✨ Open Your Birthday Surprise
+      </button>
+    </div>
+  </div>
+
+  <!-- Top Navbar -->
+  <header>
+    <div class="brand-title">
+      <span>🎂</span> Bestie Celebrations
+    </div>
+    <div class="controls-group">
+      <button class="control-btn" id="music-toggle" title="Toggle Happy Birthday Song">
+        <span id="music-icon">🎵</span> <span class="btn-label">Music</span>
+      </button>
+      <button class="control-btn" id="theme-btn" title="Change Theme">
+        <span>🎨</span> <span class="btn-label">Theme</span>
+      </button>
+      <button class="control-btn" id="edit-name-btn" title="Customize Bestie Name">
+        <span>✏️</span> <span class="btn-label">Edit Name</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="tagline">🌟 Happy Birthday to My Favorite Human 🌟</div>
+      <h1 class="hero-title">
+        Happy Birthday,<br />
+        <span class="name-highlight" id="bestie-name-display">Ananya</span>! 🎉
+      </h1>
+      <p class="hero-subtitle">
+        Today is all about celebrating you, your kindness, your chaotic humor, and having you as the absolute best
+        friend anyone could ever ask for!
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" id="hero-confetti-btn">
+          🎊 Shower Confetti!
+        </button>
+        <button class="btn-secondary" id="scroll-cake-btn">
+          🎂 Blow the Candles
+        </button>
+      </div>
+    </section>
+
+    <!-- Interactive Birthday Cake -->
+    <section class="cake-container" id="cake-section">
+      <div class="cake-header">
+        <h2>Make a Birthday Wish! 🕯️</h2>
+        <p>Click on the candles or tap the button to blow them out.</p>
+      </div>
+
+      <div class="cake-stage">
+        <div class="candle-holder">
+          <div class="candle" data-candle="1">
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+          <div class="candle" data-candle="2">
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+          <div class="candle" data-candle="3">
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+        </div>
+
+        <div class="cake-tier tier-top"></div>
+        <div class="cake-tier tier-bottom"></div>
+        <div class="cake-plate"></div>
+      </div>
+
+      <button class="btn-primary" id="blow-candles-btn">
+        💨 Blow Out The Candles!
+      </button>
+
+      <div class="wish-box" id="wish-box">
+        <h3 style="font-size: 1.3rem; color: var(--primary); margin-bottom: 8px;">✨ Wish Granted! ✨</h3>
+        <p style="font-size: 1.05rem; line-height: 1.6;">
+          "May this year bring you endless happiness, dream trips, good food, peace of mind, and memories so wild we'll
+          be laughing about them when we are eighty!"
+        </p>
+      </div>
+    </section>
+
+    <!-- Why You're The Best Bestie (Flip Cards) -->
+    <!--    <section>
+      <h2 class="section-title">Why You're Top-Tier Bestie Material 💖</h2>
+      <p class="section-subtitle">Hover or click any card to reveal the truth</p>
+
+      <div class="reasons-grid">
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">🌙</div>
+              <h3>The 2 AM Anchor</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>No matter the hour, you're always down for random deep life talks, emergency venting, or sending hilarious memes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">🕵️‍♀️</div>
+              <h3>Partner In Crime</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>Every legendary memory, questionable life choice, and unforgettable adventure always starts with the two of us.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">💯</div>
+              <h3>100% Real & Honest</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>You give the best advice, never sugarcoat when it matters, and always keep me grounded with pure love.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">📣</div>
+              <h3>Loudest Cheerleader</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>You celebrate my wins like they are your own, hyping me up whenever self-doubt creeps in.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">🤐</div>
+              <h3>Vault of Secrets</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>You know all the stories, all the drama, and every embarrassing secret—and they are safe with you forever.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-flip">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="icon">🍕</div>
+              <h3>Unmatched Vibe</h3>
+              <span class="tap-hint">Tap to flip ↺</span>
+            </div>
+            <div class="card-back">
+              <p>We can do absolutely nothing together and still have the greatest time. Life is simply a million times brighter with you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>  -->
+
+    <!-- Memory Lane Polaroids -->
+    <section>
+      <h2 class="section-title">Our Memory Lane 📸</h2>
+      <p class="section-subtitle">Moments we've lived & many more waiting to happen!</p>
+
+      <div class="polaroid-gallery">
+        <div class="polaroid">
+          <div class="polaroid-img-wrapper" id="polaroid-1-wrapper">
+            <svg viewBox="0 0 200 200" width="100%" height="100%" style="background:#fce7f3">
+              <circle cx="100" cy="80" r="45" fill="#f472b6" opacity="0.6" />
+              <path d="M40 180 C60 130 140 130 160 180" fill="#ec4899" opacity="0.7" />
+              <text x="50%" y="45%" text-anchor="middle" font-size="28" fill="#db2777">✨ 👯‍♀️ ✨</text>
+            </svg>
+            <input type="file" accept="image/*" class="photo-input" style="display:none;" id="file-1"
+              onchange="loadPhoto(event, 'polaroid-1-wrapper')">
+            <label for="file-1" class="photo-replace-btn">Change Photo</label>
+          </div>
+          <div class="polaroid-caption">Partners in Chaos 😜</div>
+        </div>
+
+        <!--  <div class="polaroid">
+          <div class="polaroid-img-wrapper" id="polaroid-2-wrapper">
+            <svg viewBox="0 0 200 200" width="100%" height="100%" style="background:#e0e7ff">
+              <rect x="50" y="60" width="100" height="90" rx="15" fill="#818cf8" opacity="0.5"/>
+              <text x="50%" y="55%" text-anchor="middle" font-size="36" fill="#4f46e5">☕ 🍰</text>
+            </svg>
+            <input type="file" accept="image/*" class="photo-input" style="display:none;" id="file-2" onchange="loadPhoto(event, 'polaroid-2-wrapper')">
+            <label for="file-2" class="photo-replace-btn">Change Photo</label>
+          </div>
+          <div class="polaroid-caption">Café & Deep Talks ☕</div>
+        </div>
+      -->
+        <div class="polaroid">
+          <div class="polaroid-img-wrapper" id="polaroid-3-wrapper">
+            <svg viewBox="0 0 200 200" width="100%" height="100%" style="background:#fef3c7">
+              <polygon points="100,20 125,75 185,80 140,120 155,180 100,150 45,180 60,120 15,80 75,75" fill="#fbbf24"
+                opacity="0.6" />
+              <text x="50%" y="60%" text-anchor="middle" font-size="34" fill="#d97706">🎉 🥳</text>
+            </svg>
+            <input type="file" accept="image/*" class="photo-input" style="display:none;" id="file-3"
+              onchange="loadPhoto(event, 'polaroid-3-wrapper')">
+            <label for="file-3" class="photo-replace-btn">Change Photo</label>
+          </div>
+          <div class="polaroid-caption">Forever Unstoppable 🚀</div>
+        </div>
+      </div>
+      <div style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+        💡 <em>Tip: Tap 'Change Photo' on any Polaroid to personalize with real photos from your phone or PC!</em>
+      </div>
+    </section>
+
+    <!-- Friendship Coupons -->
+    <section>
+      <h2 class="section-title">Your Birthday Bestie Vouchers 🎟️</h2>
+      <p class="section-subtitle">No expiration date. Valid for life!</p>
+
+      <div class="coupons-grid">
+        <div class="coupon-card">
+          <span class="coupon-badge">VIP Pass</span>
+          <h3 class="coupon-title">Free Coffee & Treats ☕</h3>
+          <p class="coupon-desc">Redeemable whenever you need a caffeine boost or a sweet treat. My treat!</p>
+          <button class="redeem-btn" onclick="redeemCoupon(this)">Claim Voucher</button>
+        </div>
+
+        <!-- <div class="coupon-card">
+          <span class="coupon-badge">Emergency</span>
+          <h3 class="coupon-title">Fake Call Rescue 📱</h3>
+          <p class="coupon-desc">Stuck in an awkward chat or boring event? Text me 'Code Red' and I will call with an urgent drama.</p>
+          <button class="redeem-btn" onclick="redeemCoupon(this)">Claim Voucher</button>
+        </div> -->
+
+        <div class="coupon-card">
+          <span class="coupon-badge">Soul Therapy</span>
+          <h3 class="coupon-title">Unlimited Rant Session 🗣️</h3>
+          <p class="coupon-desc">Full listening mode with zero judgment and 100% emotional backing, complete with
+            snacks.</p>
+          <button class="redeem-btn" onclick="redeemCoupon(this)">Claim Voucher</button>
+        </div>
+
+        <div class="coupon-card">
+          <span class="coupon-badge">Weekend Chill</span>
+          <h3 class="coupon-title">Pizza & Binge Marathon 🍕</h3>
+          <p class="coupon-desc">Your choice of series or movie, pajamas mandatory, endless slices guaranteed.</p>
+          <button class="redeem-btn" onclick="redeemCoupon(this)">Claim Voucher</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestie Mini-Quiz -->
+    <section>
+      <div class="quiz-card">
+        <span class="tagline">Interactive Fun</span>
+        <h2>The Official Brain Check 🧠</h2>
+        <div class="quiz-question" id="quiz-question-text">
+          Who is officially the coolest person celebrating their birthday today?
+        </div>
+        <div class="quiz-options" id="quiz-options-container">
+          <button class="quiz-btn" onclick="handleQuizAnswer(this, true)">My Bestie!</button>
+          <button class="quiz-btn" onclick="handleQuizAnswer(this, false)">A celebrity</button>
+          <button class="quiz-btn" onclick="handleQuizAnswer(this, false)">Nobody</button>
+          <button class="quiz-btn" onclick="handleQuizAnswer(this, false)">A potato</button>
+        </div>
+        <div id="quiz-result" style="font-weight: 700; color: var(--primary); min-height: 24px;"></div>
+      </div>
+    </section>
+
+    <!-- Digital Sticky Notes Wall -->
+    <section>
+      <div class="wall-container">
+        <div class="wall-header">
+          <div>
+            <h2 style="font-size: 1.8rem; font-weight: 800;">Birthday Love Board 💌</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Drop a cute sticky note on the wall!</p>
+          </div>
+          <button class="btn-primary" id="add-note-btn" style="padding: 10px 20px; font-size: 0.95rem;">
+            + Pin a Note
+          </button>
+        </div>
+
+        <div class="notes-board" id="notes-board">
+          <div class="sticky-note note-yellow">
+            <div class="note-content">"Happy Birthday queen! Never stop shining and being the funniest person in the
+              room."</div>
+            <div class="note-author">— Your Bestie 💕</div>
+          </div>
+          <div class="sticky-note note-pink">
+            <div class="note-content">"Another year hotter, wiser, and more iconic. Keep blessing everyone with your
+              presence!"</div>
+            <div class="note-author">— Big Fan Forever 🌟</div>
+          </div>
+          <div class="sticky-note note-green">
+            <div class="note-content">"Wishing you 365 days of laughter, zero stress, and endless delicious food!"</div>
+            <div class="note-author">— Team Besties 🥂</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Confetti Trigger -->
+  <button class="fab-confetti" id="fab-confetti-btn" title="Party Popper!">
+    🎉
+  </button>
+
+  <!-- Edit Name Modal -->
+  <div class="modal-overlay" id="name-modal">
+    <div class="modal-content">
+      <h3>Customize Bestie's Name</h3>
+      <input type="text" id="bestie-name-input" class="modal-input" placeholder="Enter bestie's name..." value="" />
+      <div class="modal-actions">
+        <button class="btn-secondary" id="modal-cancel-btn"
+          style="padding: 8px 18px; font-size: 0.9rem;">Cancel</button>
+        <button class="btn-primary" id="modal-save-btn" style="padding: 8px 18px; font-size: 0.9rem;">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Note Modal -->
+  <div class="modal-overlay" id="note-modal">
+    <div class="modal-content">
+      <h3>Add a Sticky Note</h3>
+      <textarea id="note-text-input" class="modal-input" rows="3" placeholder="Write your message..."
+        style="resize:none;"></textarea>
+      <input type="text" id="note-author-input" class="modal-input" placeholder="Your name or signature"
+        value="Your Bestie" />
+      <div class="modal-actions">
+        <button class="btn-secondary" id="note-cancel-btn" style="padding: 8px 18px; font-size: 0.9rem;">Cancel</button>
+        <button class="btn-primary" id="note-save-btn" style="padding: 8px 18px; font-size: 0.9rem;">Pin Note</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Made with infinite love, laughter, and confetti for the one and only Bestie 💖
+  </footer>
+
+  <script>
+    /* ==========================================================================
+       CONFETTI ENGINE (Native Canvas, Lightweight & Ultra-Smooth)
+       ========================================================================== */
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+    const colors = ['#ff4081', '#ff80ab', '#ffd166', '#06d6a0', '#118ab2', '#a78bfa', '#fb7185', '#38bdf8'];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Confetti {
+      constructor(x, y) {
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || -10;
+        this.size = Math.random() * 8 + 6;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.speedX = Math.random() * 6 - 3;
+        this.speedY = Math.random() * 4 + 3;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 8 - 4;
+        this.opacity = 1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+        if (this.y > canvas.height) {
+          this.opacity -= 0.05;
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.max(0, this.opacity);
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.6);
+        ctx.restore();
+      }
+    }
+
+    function fireConfetti(count = 90, x, y) {
+      for (let i = 0; i < count; i++) {
+        const p = new Confetti(x, y);
+        if (x !== undefined && y !== undefined) {
+          p.speedX = (Math.random() - 0.5) * 16;
+          p.speedY = (Math.random() - 0.7) * 16;
+        }
+        confettiParticles.push(p);
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = confettiParticles.length - 1; i >= 0; i--) {
+        const p = confettiParticles[i];
+        p.update();
+        p.draw();
+        if (p.opacity <= 0 || p.y > canvas.height + 50) {
+          confettiParticles.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animateConfetti);
+    }
+    animateConfetti();
+
+    /* ==========================================================================
+       BALLOONS GENERATOR (Interactive popping)
+       ========================================================================== */
+    const balloonLayer = document.getElementById('balloons-layer');
+    const balloonColors = ['#ff4081', '#ff80ab', '#ffd166', '#06d6a0', '#38bdf8', '#c084fc'];
+
+    function createBalloon() {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      const c = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+      b.style.backgroundColor = c;
+      b.style.color = c;
+      b.style.left = Math.random() * 92 + 'vw';
+      b.style.animationDuration = (Math.random() * 6 + 10) + 's';
+      b.style.animationDelay = (Math.random() * 2) + 's';
+
+      b.addEventListener('click', (e) => {
+        playPopSound();
+        fireConfetti(25, e.clientX, e.clientY);
+        b.remove();
+      });
+
+      balloonLayer.appendChild(b);
+      setTimeout(() => { if (b.parentNode) b.remove(); }, 18000);
+    }
+
+    for (let i = 0; i < 7; i++) {
+      setTimeout(createBalloon, i * 1500);
+    }
+    setInterval(createBalloon, 3500);
+
+    /* ==========================================================================
+       WEB AUDIO API SYNTHESIZER (Happy Birthday Song & Sound FX)
+       ========================================================================== */
+    let audioCtx = null;
+    let isPlayingMusic = false;
+    let musicTimeout = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Happy birthday melody notes & duration
+    const birthdayNotes = [
+      { note: 'G4', dur: 0.35 }, { note: 'G4', dur: 0.2 }, { note: 'A4', dur: 0.5 }, { note: 'G4', dur: 0.5 },
+      { note: 'C5', dur: 0.5 }, { note: 'B4', dur: 0.9 },
+      { note: 'G4', dur: 0.35 }, { note: 'G4', dur: 0.2 }, { note: 'A4', dur: 0.5 }, { note: 'G4', dur: 0.5 },
+      { note: 'D5', dur: 0.5 }, { note: 'C5', dur: 0.9 },
+      { note: 'G4', dur: 0.35 }, { note: 'G4', dur: 0.2 }, { note: 'G5', dur: 0.5 }, { note: 'E5', dur: 0.5 },
+      { note: 'C5', dur: 0.5 }, { note: 'B4', dur: 0.5 }, { note: 'A4', dur: 0.7 },
+      { note: 'F5', dur: 0.35 }, { note: 'F5', dur: 0.2 }, { note: 'E5', dur: 0.5 }, { note: 'C5', dur: 0.5 },
+      { note: 'D5', dur: 0.5 }, { note: 'C5', dur: 1.1 }
+    ];
+
+    const noteFreqs = {
+      'G4': 392.00, 'A4': 440.00, 'B4': 493.88,
+      'C5': 523.25, 'D5': 587.33, 'E5': 659.25, 'F5': 698.46, 'G5': 783.99
+    };
+
+    function playTone(freq, duration, type = 'sine') {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    }
+
+    function playPopSound() {
+      const ctx = getAudioContext();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(450, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+    }
+
+    function playCheerChimes() {
+      const chords = [523.25, 659.25, 783.99, 1046.50];
+      chords.forEach((freq, idx) => {
+        setTimeout(() => playTone(freq, 0.7, 'triangle'), idx * 120);
+      });
+    }
+
+    function playBirthdaySong() {
+      if (isPlayingMusic) return;
+      isPlayingMusic = true;
+      document.getElementById('music-icon').textContent = '⏸️';
+
+      let currentDelay = 0;
+      birthdayNotes.forEach((item, index) => {
+        const timeout = setTimeout(() => {
+          if (!isPlayingMusic) return;
+          const freq = noteFreqs[item.note] || 440;
+          playTone(freq, item.dur * 0.9, 'triangle');
+          // Add soft chime overtone
+          playTone(freq * 2, item.dur * 0.5, 'sine');
+
+          if (index === birthdayNotes.length - 1) {
+            isPlayingMusic = false;
+            document.getElementById('music-icon').textContent = '🎵';
+          }
+        }, currentDelay * 1000);
+        currentDelay += item.dur;
+      });
+    }
+
+    function stopBirthdaySong() {
+      isPlayingMusic = false;
+      document.getElementById('music-icon').textContent = '🎵';
+    }
+
+    document.getElementById('music-toggle').addEventListener('click', () => {
+      getAudioContext();
+      if (isPlayingMusic) {
+        stopBirthdaySong();
+      } else {
+        playBirthdaySong();
+      }
+    });
+
+    /* ==========================================================================
+       INTERACTIVE CAKE & BLOWING CANDLES
+       ========================================================================== */
+    const blowBtn = document.getElementById('blow-candles-btn');
+    const wishBox = document.getElementById('wish-box');
+    const flames = document.querySelectorAll('.flame');
+    const smokes = document.querySelectorAll('.smoke');
+    let candlesExtinguished = false;
+
+    function extinguishCandles() {
+      if (candlesExtinguished) return;
+      candlesExtinguished = true;
+      playCheerChimes();
+
+      flames.forEach(f => f.classList.add('extinguished'));
+      smokes.forEach(s => {
+        s.style.display = 'block';
+      });
+
+      fireConfetti(140);
+      wishBox.style.display = 'block';
+      blowBtn.textContent = '🎉 Wish Sent into the Universe!';
+      blowBtn.style.background = 'var(--accent-alt)';
+    }
+
+    blowBtn.addEventListener('click', extinguishCandles);
+    document.querySelectorAll('.candle').forEach(c => {
+      c.addEventListener('click', extinguishCandles);
+    });
+
+    /* ==========================================================================
+       COUPONS & REDEEM
+       ========================================================================== */
+    function redeemCoupon(btn) {
+      if (btn.classList.contains('redeemed')) return;
+      playCheerChimes();
+      fireConfetti(40);
+      btn.classList.add('redeemed');
+      btn.textContent = '✅ Redeemed!';
+    }
+
+    /* ==========================================================================
+       QUIZ SYSTEM
+       ========================================================================== */
+    function handleQuizAnswer(btn, isCorrect) {
+      const resultEl = document.getElementById('quiz-result');
+      if (isCorrect) {
+        btn.classList.add('correct');
+        resultEl.textContent = '🎉 CORRECT! There is nobody more fabulous today!';
+        playCheerChimes();
+        fireConfetti(60);
+      } else {
+        btn.classList.add('wrong');
+        resultEl.textContent = 'Wrong answer! Try again—who is the main character today? 😉';
+        playPopSound();
+      }
+    }
+
+    /* ==========================================================================
+       PHOTO UPLOAD / POLAROIDS
+       ========================================================================== */
+    function loadPhoto(event, wrapperId) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const wrapper = document.getElementById(wrapperId);
+        wrapper.innerHTML = `
+          <img src="${e.target.result}" alt="Memory photo" />
+          <input type="file" accept="image/*" class="photo-input" style="display:none;" id="${event.target.id}" onchange="loadPhoto(event, '${wrapperId}')">
+          <label for="${event.target.id}" class="photo-replace-btn">Change Photo</label>
+        `;
+        fireConfetti(30);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ==========================================================================
+       NAME CUSTOMIZATION MODAL
+       ========================================================================== */
+    const nameModal = document.getElementById('name-modal');
+    const nameInput = document.getElementById('bestie-name-input');
+    const nameDisplay = document.getElementById('bestie-name-display');
+
+    document.getElementById('edit-name-btn').addEventListener('click', () => {
+      nameInput.value = nameDisplay.textContent;
+      nameModal.style.display = 'flex';
+      nameInput.focus();
+    });
+
+    document.getElementById('modal-cancel-btn').addEventListener('click', () => {
+      nameModal.style.display = 'none';
+    });
+
+    document.getElementById('modal-save-btn').addEventListener('click', () => {
+      const val = nameInput.value.trim();
+      if (val) {
+        nameDisplay.textContent = val;
+        document.title = `Happy Birthday, ${val}! 🎉`;
+      }
+      nameModal.style.display = 'none';
+      fireConfetti(40);
+    });
+
+    /* ==========================================================================
+       STICKY NOTES MODAL & ADDING
+       ========================================================================== */
+    const noteModal = document.getElementById('note-modal');
+    const noteText = document.getElementById('note-text-input');
+    const noteAuthor = document.getElementById('note-author-input');
+    const board = document.getElementById('notes-board');
+    const noteColors = ['note-yellow', 'note-pink', 'note-green', 'note-blue'];
+
+    document.getElementById('add-note-btn').addEventListener('click', () => {
+      noteModal.style.display = 'flex';
+      noteText.focus();
+    });
+
+    document.getElementById('note-cancel-btn').addEventListener('click', () => {
+      noteModal.style.display = 'none';
+    });
+
+    document.getElementById('note-save-btn').addEventListener('click', () => {
+      const msg = noteText.value.trim();
+      const author = noteAuthor.value.trim() || 'Bestie Fan';
+      if (!msg) return;
+
+      const randomColor = noteColors[Math.floor(Math.random() * noteColors.length)];
+      const noteDiv = document.createElement('div');
+      noteDiv.className = `sticky-note ${randomColor}`;
+      noteDiv.innerHTML = `
+        <div class="note-content">"${msg}"</div>
+        <div class="note-author">— ${author} 💕</div>
+      `;
+      board.appendChild(noteDiv);
+      noteText.value = '';
+      noteModal.style.display = 'none';
+      fireConfetti(35);
+    });
+
+    /* ==========================================================================
+       THEME SWITCHER
+       ========================================================================== */
+    const themes = ['default', 'midnight', 'sunset'];
+    let themeIndex = 0;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      themeIndex = (themeIndex + 1) % themes.length;
+      const chosenTheme = themes[themeIndex];
+      if (chosenTheme === 'default') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', chosenTheme);
+      }
+      playPopSound();
+    });
+
+    /* ==========================================================================
+       SURPRISE ENVELOPE OPENING
+       ========================================================================== */
+    const envelope = document.getElementById('envelope-overlay');
+    document.getElementById('open-surprise-btn').addEventListener('click', () => {
+      envelope.classList.add('hidden');
+      getAudioContext();
+      fireConfetti(120);
+      playCheerChimes();
+      setTimeout(playBirthdaySong, 800);
+    });
+
+    /* Buttons */
+    document.getElementById('hero-confetti-btn').addEventListener('click', (e) => {
+      fireConfetti(80, e.clientX, e.clientY);
+      playCheerChimes();
+    });
+
+    document.getElementById('fab-confetti-btn').addEventListener('click', (e) => {
+      fireConfetti(90, e.clientX, e.clientY);
+      playCheerChimes();
+    });
+
+    document.getElementById('scroll-cake-btn').addEventListener('click', () => {
+      document.getElementById('cake-section').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+
+</html>
